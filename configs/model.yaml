@@ -1,0 +1,13 @@
+
+model:
+  architecture: Unet
+  encoder: resnet34
+  encoder_weights: imagenet
+  in_channels: 2
+  classes: 1
+  activation: null
+
+uncertainty:
+  method: mc_dropout
+  enabled: true
+  num_samples: 20

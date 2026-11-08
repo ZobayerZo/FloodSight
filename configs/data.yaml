@@ -1,0 +1,27 @@
+
+project:
+  name: FloodSight
+  version: 1.0.0
+
+dataset:
+  name: Sen1Floods11
+  version: v1.1
+  image_size: 512
+  channels:
+    - VV
+    - VH
+
+paths:
+  raw: data/raw
+  interim: data/interim
+  processed: data/processed
+  external: data/external
+
+labels:
+  invalid: -1
+  non_water: 0
+  water: 1
+
+processing:
+  normalize: true
+  remove_invalid_pixels: true

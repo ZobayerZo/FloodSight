@@ -1,0 +1,19 @@
+
+evaluation:
+  strategy: leave_one_event_out
+
+  metrics:
+    - iou
+    - f1
+    - precision
+    - recall
+    - dice
+
+  uncertainty:
+    calibration: true
+    reliability_diagram: true
+    error_analysis: true
+
+  baselines:
+    - otsu
+    - random_forest
