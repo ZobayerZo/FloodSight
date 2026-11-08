@@ -1,0 +1,45 @@
+
+# ============================================================
+# FLOODSIGHT - PROJECT DEPENDENCIES
+# Python 3.13
+# ============================================================
+
+# Scientific Computing
+numpy
+pandas
+scipy
+matplotlib
+seaborn
+tqdm
+pyyaml
+
+# Geospatial Processing
+rasterio
+geopandas
+shapely
+pyproj
+rioxarray
+xarray
+
+# Image Processing
+opencv-python
+scikit-image
+pillow
+
+# Machine Learning
+scikit-learn
+joblib
+
+# Geospatial Visualization
+folium
+leafmap
+plotly
+
+# Application Development
+streamlit
+
+# Experiment Tracking
+mlflow
+
+# Testing
+pytest
