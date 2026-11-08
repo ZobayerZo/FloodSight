@@ -1,0 +1,15 @@
+Finding,Value
+Total false positives,40390.0
+Connected components,112.0
+Largest component pixels,13176.0
+Top 3 component share (%),67.27
+Top 5 component share (%),80.96
+Top 10 component share (%),89.92
+JRC overlap with false positives (%),2.71
+Mean water probability of false positives,0.7942
+VV FP mean (dB),-16.3008
+VV TN mean (dB),-9.2034
+VH FP mean (dB),-25.8384
+VH TN mean (dB),-18.0284
+VV backscatter AUC,0.9216
+VH backscatter AUC,0.9305

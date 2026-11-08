@@ -1,0 +1,10 @@
+analysis,value,unit
+Hand-labelled-only water error rate,67.84,percent
+Uncertainty AUROC,0.1626,score
+Average precision,0.5003,score
+Mean variance reduction on incorrect predictions,63.03,percent
+Samples with lower variance on incorrect predictions,6.0,samples out of 6
+Mean confidence on incorrect predictions,91.76,percent
+Mean confidence on correct predictions,81.85,percent
+Mean prediction margin on incorrect predictions,0.4176,probability margin
+Mean prediction margin on correct predictions,0.3185,probability margin

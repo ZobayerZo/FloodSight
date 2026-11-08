@@ -2,12 +2,20 @@
 model:
   architecture: Unet
   encoder: resnet34
-  encoder_weights: imagenet
+  encoder_weights: null
   in_channels: 2
   classes: 1
   activation: null
+  checkpoint: models/checkpoints/floodsight_unet_best.pth
+
+prediction:
+  threshold: 0.5
+  input_channels:
+    - VV
+    - VH
 
 uncertainty:
   method: mc_dropout
   enabled: true
   num_samples: 20
+  dropout_rate: 0.20

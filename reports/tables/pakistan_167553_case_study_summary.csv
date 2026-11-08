@@ -1,0 +1,30 @@
+Finding,Value
+Valid pixels,247105.0
+True positives,273.0
+False positives,6921.0
+False negatives,1185.0
+True negatives,238726.0
+Error rate (%),3.28
+False-positive share of errors (%),85.38
+False-negative share of errors (%),14.62
+Reference water coverage (%),0.59
+Predicted water coverage (%),2.91
+FP connected components,111.0
+Largest FP component pixels,688.0
+Largest FP component share (%),9.94
+Top 3 FP components share (%),29.03
+Top 5 FP components share (%),40.6
+Top 10 FP components share (%),56.75
+Top 10 FP mean VV (dB),-15.7882
+True negative mean VV (dB),-10.5324
+Top 10 FP mean VH (dB),-24.3805
+True negative mean VH (dB),-19.0761
+Top 10 FP mean water probability,0.7091
+Remaining FP mean water probability,0.6579
+Top 10 FP mean variance,0.006606
+Remaining FP mean variance,0.007458
+True negative mean variance,0.004299
+JRC water pixels,0.0
+JRC overlap with FP (%),0.0
+VV backscatter AUC,0.8299
+VH backscatter AUC,0.8376

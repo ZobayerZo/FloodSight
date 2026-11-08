@@ -1,0 +1,20 @@
+Finding,Value
+JRC water pixels,8840.0
+JRC coverage (%),12.108
+Hand-label water pixels,2383.0
+Both hand-label and JRC water,2373.0
+Hand-label only,10.0
+JRC only,6467.0
+Hand-label FP overlapping JRC,4117.0
+Hand-label FP JRC overlap (%),79.96
+Top 2 FP components JRC overlap,3996.0
+Top 2 FP JRC overlap (%),83.16
+Model vs JRC TP,6403.0
+Model vs JRC FP,1034.0
+Model vs JRC FN,2437.0
+Model vs JRC TN,63136.0
+Model vs JRC precision,0.861
+Model vs JRC recall,0.7243
+Model vs JRC F1,0.7868
+Model vs JRC IoU,0.6485
+Model vs JRC accuracy,0.9525

@@ -170,3 +170,23 @@ desktop.ini
 *.swp
 *.swo
 *~
+# Large datasets and archives
+data/raw/
+data/interim/
+data/processed/
+data/external/
+*.zip
+
+# Model checkpoints and weights
+models/checkpoints/
+*.pth
+*.pt
+*.onnx
+
+# Python environment
+.venv/
+__pycache__/
+*.py[cod]
+
+# Temporary files
+.ipynb_checkpoints/

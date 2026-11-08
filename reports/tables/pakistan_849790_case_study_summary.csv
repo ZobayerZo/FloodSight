@@ -1,0 +1,22 @@
+analysis,value,unit
+Sample error rate,59.97,percent
+Reference water coverage,66.83,percent
+Predicted water coverage,8.43,percent
+False negative pixels,152240.0,pixels
+False positive pixels,2029.0,pixels
+Segmentation recall,11.44,percent
+Segmentation precision,90.65,percent
+Uncertainty AUROC,0.5883,score
+Uncertainty average precision,0.6321,score
+Random AP baseline,0.5997,score
+High uncertainty error rate,48.52,percent
+Remaining error rate,60.61,percent
+True positive mean variance,0.009241,variance
+False negative mean variance,0.003349,variance
+False positive mean variance,0.010611,variance
+True negative mean variance,0.001642,variance
+True positive mean water probability,0.762194,probability
+False negative mean water probability,0.079861,probability
+True positive mean confidence,76.22,percent
+False negative mean confidence,92.01,percent
+False negative contribution to Pakistan errors,97.04,percent

@@ -1,0 +1,5 @@
+category,pixels,mean_variance,median_variance,mean_water_probability,model_error_pct
+Both water,58979,0.013665,0.003065,0.953514,0.133946
+Hand water only,46992,0.003143,0.000281,0.262912,73.086908
+JRC water only,10471,0.038119,0.019536,0.91253,99.789896
+Both non-water,1069,0.001736,0.000391,0.090418,5.612722
