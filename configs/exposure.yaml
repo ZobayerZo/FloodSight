@@ -1,0 +1,68 @@
+
+population:
+  provider: WorldPop
+  dataset: Global2
+  release: R2025A
+  resolution_m: 100
+  years:
+    - 2016
+    - 2017
+    - 2018
+    - 2019
+  statistic: population_count
+  licence: CC BY 4.0
+
+  events:
+    India:
+      country: India
+      iso3: IND
+      year: 2016
+
+    Pakistan:
+      country: Pakistan
+      iso3: PAK
+      year: 2017
+
+    Sri-Lanka:
+      country: Sri Lanka
+      iso3: LKA
+      year: 2017
+
+    Ghana:
+      country: Ghana
+      iso3: GHA
+      year: 2018
+
+    Mekong:
+      country: Cambodia
+      iso3: KHM
+      year: 2018
+
+    Nigeria:
+      country: Nigeria
+      iso3: NGA
+      year: 2018
+
+    Paraguay:
+      country: Paraguay
+      iso3: PRY
+      year: 2018
+
+    Somalia:
+      country: Somalia
+      iso3: SOM
+      year: 2018
+
+    Spain:
+      country: Spain
+      iso3: ESP
+      year: 2019
+
+    USA:
+      country: United States
+      iso3: USA
+      year: 2019
+
+paths:
+  footprint_file: reports/tables/exposure_footprints.csv
+  output_directory: data/external/worldpop

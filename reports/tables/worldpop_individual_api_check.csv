@@ -1,0 +1,4 @@
+sample,event,year,status,population,area_km2,population_density,response
+Paraguay_511199,Paraguay,2018,Success,0.0,23.6994,0.0,"{'total_population': 0.0, 'area_km2': 23.6994, 'population_density': 0.0, 'data_year': 2018, 'data_source': 'WorldPop Global2 R2025A, 100 m', 'processing_time_ms': 27, 'task_id': 'cf40fd30-f147-465b-9682-bc6cf9e5fd8c'}"
+Paraguay_280900,Paraguay,2018,Success,1585.2,23.9337,66.23,"{'total_population': 1585.2, 'area_km2': 23.9337, 'population_density': 66.23, 'data_year': 2018, 'data_source': 'WorldPop Global2 R2025A, 100 m', 'processing_time_ms': 26, 'task_id': '1cd44aee-9a0f-4592-b5f8-1705e4a70109'}"
+Ghana_406026,Ghana,2018,Success,2088.06,25.606,81.55,"{'total_population': 2088.06, 'area_km2': 25.606, 'population_density': 81.55, 'data_year': 2018, 'data_source': 'WorldPop Global2 R2025A, 100 m', 'processing_time_ms': 12, 'task_id': 'c4f154cf-758a-4d60-a4c0-5f48cf7b520f'}"

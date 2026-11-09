@@ -81,6 +81,93 @@ def preprocess_sample(sar_path, label_path, stats=None):
     return normalized, target, valid_mask
 
 
+def preprocess_sar_for_inference(sar_path, stats=None):
+    """
+    Preprocess a two-band Sentinel-1 SAR GeoTIFF for application inference.
+
+    Args:
+        sar_path: Path to a two-band SAR GeoTIFF.
+        stats: Optional training normalization statistics.
+
+    Returns:
+        image: Float32 normalized array with shape (2, H, W).
+        sar_valid_mask: Boolean mask identifying valid SAR pixels.
+        metadata: Spatial metadata needed for geospatial outputs.
+    """
+
+    sar_path = Path(sar_path)
+
+    if not sar_path.exists():
+        raise FileNotFoundError(
+            f"SAR image not found: {sar_path}"
+        )
+
+    if stats is None:
+        stats = load_normalization_stats()
+
+    with rasterio.open(sar_path) as src:
+
+        if src.count != 2:
+            raise ValueError(
+                f"Expected exactly 2 SAR bands (VV, VH), "
+                f"but found {src.count}."
+            )
+
+        sar = src.read(
+            masked=True
+        ).astype(np.float32)
+
+        metadata = {
+            "height": src.height,
+            "width": src.width,
+            "crs": src.crs,
+            "transform": src.transform,
+            "bounds": src.bounds,
+            "nodata": src.nodata,
+        }
+
+        dataset_valid = src.dataset_mask() > 0
+
+    sar_data = np.asarray(sar.filled(np.nan), dtype=np.float32)
+
+    # Both SAR bands and the dataset mask must be valid.
+    sar_valid_mask = (
+        np.isfinite(sar_data).all(axis=0)
+        & dataset_valid
+        & ~np.ma.getmaskarray(sar).any(axis=0)
+    )
+
+    normalized = np.zeros_like(
+        sar_data,
+        dtype=np.float32
+    )
+
+    for index, band_name in enumerate(["VV", "VH"]):
+
+        mean = stats[band_name]["mean"]
+        std = stats[band_name]["std"]
+
+        if not np.isfinite(mean) or not np.isfinite(std) or std <= 0:
+            raise ValueError(
+                f"Invalid normalization statistics for {band_name}."
+            )
+
+        normalized[index] = np.where(
+            sar_valid_mask,
+            (sar_data[index] - mean) / std,
+            0.0
+        )
+
+    normalized = np.nan_to_num(
+        normalized,
+        nan=0.0,
+        posinf=0.0,
+        neginf=0.0
+    )
+
+    return normalized, sar_valid_mask, metadata
+
+
 if __name__ == "__main__":
 
     manifest_path = PROJECT_ROOT / "data/interim/sen1floods11_manifest.csv"

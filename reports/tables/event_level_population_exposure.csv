@@ -1,0 +1,11 @@
+event,sample_count,adequate_samples,partial_samples,no_population_data_samples,processing_errors,mean_population_coverage_pct,samples_with_exposure_estimate,sum_observed_population,sum_sample_exposure_estimates
+Ghana,10,0,10,0,0,8.96,10,4428.5,41.85
+India,14,1,13,0,0,32.26,14,103674.51,3699.98
+Mekong,6,0,6,0,0,19.56,6,13459.84,1003.18
+Nigeria,4,0,4,0,0,12.08,4,2357.48,123.67
+Pakistan,6,0,6,0,0,44.51,6,39297.26,1047.76
+Paraguay,13,0,12,1,0,6.56,12,2884.78,10.69
+Somalia,6,0,6,0,0,6.49,6,4069.78,6.52
+Spain,6,4,2,0,0,79.4,6,64833.57,2754.74
+Sri-Lanka,9,0,9,0,0,43.42,9,54851.12,441.68
+USA,14,2,12,0,0,44.4,14,44235.74,1361.72

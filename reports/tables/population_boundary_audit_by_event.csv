@@ -1,0 +1,11 @@
+event,samples,mean_current_coverage,mean_intersection_coverage,mean_center_coverage,total_boundary_cells,total_valid_cells_outside_center,samples_with_valid_boundary_cells
+Ghana,10,8.9554,8.9554,9.2167,548,0,0
+India,14,32.2621,32.2621,32.8516,547,0,0
+Mekong,6,19.5592,19.5592,19.5592,0,0,0
+Nigeria,4,12.0827,12.0827,12.3064,220,0,0
+Pakistan,6,44.5124,44.5124,44.9898,164,0,0
+Paraguay,13,6.5633,6.5633,6.6339,438,0,0
+Somalia,6,6.4903,6.4903,6.6622,437,0,0
+Spain,6,79.3994,79.3994,79.9208,220,98,2
+Sri-Lanka,9,43.4196,43.4196,44.0948,440,0,0
+USA,14,44.3967,44.3967,45.3669,822,0,0
