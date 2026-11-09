@@ -45,3 +45,5 @@ mlflow
 pytest
 
 streamlit-folium
+
+torch
