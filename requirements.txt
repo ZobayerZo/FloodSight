@@ -29,7 +29,7 @@ pillow
 # Machine Learning
 scikit-learn
 joblib
-
+segmentation-models-pytorch
 # Geospatial Visualization
 folium
 leafmap
