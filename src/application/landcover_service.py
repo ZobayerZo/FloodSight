@@ -54,6 +54,8 @@ class LandCoverExposureService:
         - All output rasters are aligned to the input SAR grid.
     """
 
+
+
     def __init__(
         self,
         worldcover_dir="data/external/worldcover",
@@ -68,17 +70,18 @@ class LandCoverExposureService:
                 "and less than or equal to 1."
             )
 
-        if not self.worldcover_dir.exists():
-            raise FileNotFoundError(
-                f"WorldCover directory not found: "
-                f"{self.worldcover_dir}"
+        # WorldCover is optional.
+        # Flood prediction must remain available even when
+        # the WorldCover dataset is not installed.
+        self.tile_paths = []
+
+        if self.worldcover_dir.is_dir():
+            self.tile_paths = sorted(
+                self.worldcover_dir.glob(
+                    WORLDCOVER_FILENAME_PATTERN
+                )
             )
 
-        self.tile_paths = sorted(
-            self.worldcover_dir.glob(
-                WORLDCOVER_FILENAME_PATTERN
-            )
-        )
 
         if not self.tile_paths:
             raise FileNotFoundError(
