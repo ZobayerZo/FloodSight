@@ -222,3 +222,8 @@ desktop.ini
 !demo_data/
 !demo_data/samples/
 !demo_data/samples/*.tif
+
+# Allow the trained FloodSight inference checkpoint
+!models/
+!models/checkpoints/
+!models/checkpoints/floodsight_unet_best.pth
