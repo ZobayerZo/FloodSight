@@ -83,12 +83,6 @@ class LandCoverExposureService:
             )
 
 
-        if not self.tile_paths:
-            raise FileNotFoundError(
-                "No ESA WorldCover GeoTIFF tiles were found in "
-                f"{self.worldcover_dir}."
-            )
-
     # ========================================================
     # METADATA AND GEOGRAPHIC UTILITIES
     # ========================================================
