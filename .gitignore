@@ -218,3 +218,7 @@ desktop.ini
 *.swp
 *.swo
 *~
+# Allow preloaded FloodSight demonstration samples
+!demo_data/
+!demo_data/samples/
+!demo_data/samples/*.tif

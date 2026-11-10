@@ -3,6 +3,7 @@ import os
 import csv
 import math
 import tempfile
+from pathlib import Path
 from io import StringIO
 from collections.abc import Mapping
 
@@ -191,6 +192,16 @@ if "analysis_error" not in st.session_state:
 # =========================================================
 # GENERAL HELPERS
 # =========================================================
+
+def find_repository_root():
+    """Find the FloodSight project root."""
+    current_file = Path(__file__).resolve().parent
+
+    for candidate in (current_file, *current_file.parents):
+        if (candidate / "src").is_dir():
+            return candidate
+
+    return current_file
 
 def make_filename_slug(value):
     """Convert a value into a safe filename component."""
@@ -1151,6 +1162,204 @@ elif page == "Flood Analysis":
     if st.session_state.analysis_error:
         st.error(st.session_state.analysis_error)
 
+
+    # =====================================================
+    # PRELOADED SAMPLE ANALYSIS
+    # =====================================================
+
+    st.markdown("---")
+
+    st.markdown("### Explore Sample Results")
+
+    st.write(
+        "Explore preloaded Sentinel-1 SAR samples from "
+        "Ghana, India and Pakistan. Select a sample to "
+        "generate its flood assessment automatically."
+    )
+
+    # Each sample has a fixed event configuration.
+    # No manual event selection is required here.
+
+    DEMO_SAMPLES = {
+        "Ghana — Sample 1 (313799)": {
+            "filename": "Ghana_313799_S1Hand.tif",
+            "event": "Ghana",
+        },
+        "Ghana — Sample 2 (406026)": {
+            "filename": "Ghana_406026_S1Hand.tif",
+            "event": "Ghana",
+        },
+        "Ghana — Sample 3 (308249)": {
+            "filename": "Ghana_308249_S1Hand.tif",
+            "event": "Ghana",
+        },
+        "Ghana — Sample 4 (319168)": {
+            "filename": "Ghana_319168_S1Hand.tif",
+            "event": "Ghana",
+        },
+        "Ghana — Sample 5 (359826)": {
+            "filename": "Ghana_359826_S1Hand.tif",
+            "event": "Ghana",
+        },
+
+        "India — Sample 1 (1017769)": {
+            "filename": "India_1017769_S1Hand.tif",
+            "event": "India",
+        },
+        "India — Sample 2 (1018317)": {
+            "filename": "India_1018317_S1Hand.tif",
+            "event": "India",
+        },
+        "India — Sample 3 (1018327)": {
+            "filename": "India_1018327_S1Hand.tif",
+            "event": "India",
+        },
+        "India — Sample 4 (103447)": {
+            "filename": "India_103447_S1Hand.tif",
+            "event": "India",
+        },
+        "India — Sample 5 (1050276)": {
+            "filename": "India_1050276_S1Hand.tif",
+            "event": "India",
+        },
+
+        "Pakistan — Sample 1 (1027214)": {
+            "filename": "Pakistan_1027214_S1Hand.tif",
+            "event": "Pakistan",
+        },
+        "Pakistan — Sample 2 (1036366)": {
+            "filename": "Pakistan_1036366_S1Hand.tif",
+            "event": "Pakistan",
+        },
+        "Pakistan — Sample 3 (132143)": {
+            "filename": "Pakistan_132143_S1Hand.tif",
+            "event": "Pakistan",
+        },
+        "Pakistan — Sample 4 (167553)": {
+            "filename": "Pakistan_167553_S1Hand.tif",
+            "event": "Pakistan",
+        },
+        "Pakistan — Sample 5 (210595)": {
+            "filename": "Pakistan_210595_S1Hand.tif",
+            "event": "Pakistan",
+        },
+    }
+
+    demo_root = (
+        find_repository_root()
+        / "demo_data"
+        / "samples"
+    )
+
+    # One selector for all 15 samples.
+    selected_sample = st.selectbox(
+        "Select a preloaded SAR sample",
+        options=list(DEMO_SAMPLES.keys()),
+        key="demo_sample_selection",
+    )
+
+    sample_config = DEMO_SAMPLES[selected_sample]
+
+    sample_filename = sample_config["filename"]
+    sample_event = sample_config["event"]
+
+    sample_year = EVENT_YEARS[sample_event]
+
+    sample_path = demo_root / sample_filename
+
+    # Automatically display the event configuration.
+    st.markdown("#### Automatic event configuration")
+
+    info_col1, info_col2, info_col3 = st.columns(3)
+
+    info_col1.metric(
+        "Flood event",
+        sample_event,
+    )
+
+    info_col2.metric(
+        "Population reference year",
+        str(sample_year),
+    )
+
+    info_col3.metric(
+        "Prediction threshold",
+        "0.50",
+    )
+
+    st.caption(
+        f"Selected image: {sample_filename} | "
+        "MC Dropout uncertainty: Enabled (20 passes)"
+    )
+
+    if not sample_path.is_file():
+
+        st.error(
+            f"Sample file not found: {sample_path}"
+        )
+
+    else:
+
+        if st.button(
+            "View Sample Results",
+            key="run_preloaded_sample",
+        ):
+
+            st.session_state.analysis_result = None
+            st.session_state.analysis_error = None
+
+            try:
+
+                progress = st.progress(0)
+                status = st.empty()
+
+                status.info(
+                    f"Initializing analysis for {selected_sample}..."
+                )
+
+                progress.progress(15)
+
+                application = FloodSightApplication(
+                    threshold=0.50,
+                    mc_passes=20,
+                    dropout_probability=0.2,
+                )
+
+                status.info(
+                    f"Generating flood prediction for {sample_event}..."
+                )
+
+                progress.progress(35)
+
+                result = application.analyze(
+                    sar_path=str(sample_path),
+                    event=sample_event,
+                    include_uncertainty=True,
+                    original_filename=sample_filename,
+                )
+
+                progress.progress(100)
+
+                st.session_state.analysis_result = result
+                st.session_state.analysis_error = None
+
+                status.success(
+                    "Sample flood assessment completed successfully."
+                )
+
+                st.success(
+                    "Your sample results are ready. "
+                    "Open Results from the sidebar to explore them."
+                )
+
+            except Exception as error:
+
+                st.session_state.analysis_result = None
+                st.session_state.analysis_error = str(error)
+
+                st.error(
+                    f"Sample analysis failed: {error}"
+                )
 
 # =========================================================
 # RESULTS PAGE
